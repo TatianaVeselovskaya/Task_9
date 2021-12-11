@@ -10,61 +10,66 @@ namespace Task_9
     {
         static void Main(string[] args)
         {
-            double a = 0, b = 0, res = 0;
-            int d = 0;
-            string sta, stb, std;
-            Console.WriteLine("*****Ваш личный калькулятор***");
-            Console.Write("Введите первое число: ");
-            sta = Console.ReadLine();
-            if (double.TryParse(sta, out a))
+            Console.WriteLine("Вас приветствует калькулятор");
+
+            Console.Write("Введите целое число Х=");
+            double a = 0;
+            try
             {
-                Console.Write("Введите второе число: ");
-                stb = Console.ReadLine();
-                if (double.TryParse(stb, out b))
-                {
-                    a = Convert.ToDouble(sta);
-                    b = Convert.ToDouble(stb);
-                    Console.WriteLine("Список доступных операций:");
-                    Console.WriteLine("1: Сложение");
-                    Console.WriteLine("2: Вычитание");
-                    Console.WriteLine("3: Произведение");
-                    Console.WriteLine("4: Часное");
-                    Console.Write("Введите номер операции: ");
-                    std = Console.ReadLine();
-                    if (int.TryParse(std, out d))
-                    {
-                        d = Convert.ToInt32(std);
-                        if (d >= 1 && d <= 4)
-                        {
-                            switch (d)
-                            {
-                                case 1: res = a + b; break;
-                                case 2: res = a - b; break;
-                                case 3: res = a * b; break;
-                                case 4: res = a / b; break;
-                            }
-                            Console.WriteLine("Реультат: " + res);
-                        }
-                        else 
-                        { 
-                            Console.WriteLine("Несуществует операции: " + std); 
-                        }
-                    }
-                    else 
-                    { 
-                        Console.WriteLine("Несуществует операции: " + std); 
-                    }
-               
-                
-                }
-                    else 
-                    {
-                        Console.WriteLine("Введенное: " + stb + " не является числом"); 
-                    }
+                a = Convert.ToDouble(Console.ReadLine());
             }
-            else 
-            { 
-                Console.WriteLine("Введенное: " + sta + " не является числом"); 
+            catch
+            {
+                Console.WriteLine("Некорректный ввод");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.Write("Введите целое число Y=");
+            double b = 0;
+            try
+            {
+                b = Convert.ToDouble(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Некорректный ввод");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.WriteLine("Введите код операции:");
+            Console.WriteLine("1: Сложение");
+            Console.WriteLine("2: Вычитание");
+            Console.WriteLine("3: Произведение");
+            Console.WriteLine("4: Часное");
+            Console.Write("Введите номер операции: ");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    Console.WriteLine($"Рузультат: {a} + {b} = " + (a + b));
+                    break;
+                case "2":
+                    Console.WriteLine($"Рузультат: {a} - {b} = " + (a - b));
+                    break;
+                case "3":
+                    Console.WriteLine($"Рузультат: {a} * {b} = " + (a * b));
+                    break;
+                case "4":
+                    try
+                    {
+                        Console.WriteLine($"Рузультат: {a} / {b} = " + (a / b));
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Деление на 0");
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Некорректная операция");
+                    Console.ReadKey();
+                    return;
             }
 
             Console.ReadKey();
